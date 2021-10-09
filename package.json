@@ -1,0 +1,19 @@
+{
+  "name": "backend-project-ciclo3",
+  "version": "1.0.0",
+  "description": "aplicaivo de ventas de celulares",
+  "main": "index.js",
+  "repository": "https://github.com/CuriDevs/backend-project-ciclo3.git",
+  "author": "vivian walls <doly8328@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
