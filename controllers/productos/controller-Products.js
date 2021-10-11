@@ -1,4 +1,4 @@
-import { getBD } from '../DB/db.js';
+import { getBD } from '../../BD/bd.js';
 import { ObjectId } from 'mongodb';
 
 

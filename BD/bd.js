@@ -10,7 +10,6 @@ const Client = new MongoClient (stringconexion, {
     useUniFiedTopology: true,
 });
 
-
 let conexionBd;
 
 const conectarBD =(callback) =>{  

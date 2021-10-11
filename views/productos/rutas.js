@@ -25,7 +25,7 @@ rutasProducto.route('/productos').post((req,res) => {
     crearProducto(req.body, generalCallback(res));
 });
 
-rutasProducto.route('/productos/:id').path((req, res) => {
+rutasProducto.route('/productos/:id').patch((req, res) => {
     editarProducto(req.params.id, req.body, generalCallback(res));
 });
 
