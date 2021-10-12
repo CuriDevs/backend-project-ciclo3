@@ -27,15 +27,15 @@ const editarProducto = async(edicion, id, callback) => {
     delete edicion.id;
     const operacion = {$set: edicion,};
     const conexionBd = getBD();
-    await conexionBd.collection('producto').findOneandUpdate(filtroProducto, operacion,
-        {upset: true,returnOriginal: true}, callback);
+    await conexionBd.collection('producto').findOneAndUpdate(filtrarProducto, operacion,
+        {upsert: true,returnOriginal: true}, callback);
 
 };
 
 const eliminarProducto = async(id, callback) => {
     const filtrarProducto = {_id: new ObjectId(id)};
     const conexionBd = getBD();
-    await conexionBd.collection('producto').deleteOne(filtroProducto, callback);
+    await conexionBd.collection('producto').deleteOne(filtrarProducto, callback);
 };
 
 export {getAllProducts,crearProducto,editarProducto,eliminarProducto};

@@ -1,9 +1,9 @@
 import Express from 'express'
 import {
     crearProducto,
-    eliminarProducto,
-    editarProducto,
     getAllProducts,
+    editarProducto,
+    eliminarProducto,
   } from '../../controllers/productos/controller-Products.js';
 
 const rutasProducto = Express.Router();
@@ -21,7 +21,7 @@ rutasProducto.route('/productos').get((req, res) => {
     getAllProducts(generalCallback(res));
 });
 
-rutasProducto.route('/productos').post((req,res) => {
+rutasProducto.route('/productos/nuevo').post((req,res) => {
     crearProducto(req.body, generalCallback(res));
 });
 
@@ -30,7 +30,7 @@ rutasProducto.route('/productos/:id').patch((req, res) => {
 });
 
 rutasProducto.route('/productos/:id').delete((req, res) => {
-    eliminarProducto(req.params.id, generalCallback(res));
+    eliminarProducto(req.params.id, req.body, generalCallback(res));
 });
 
 
