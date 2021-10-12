@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-//const routerApi = require('./routes');
+const routerApi = require('./routes');
 
 const app = express();
 const port = 3003;
@@ -27,4 +27,4 @@ app.listen(port, () => {
   console.log('Mi port ' + port);
 })
 
-//routerApi(app);
+routerApi(app);
