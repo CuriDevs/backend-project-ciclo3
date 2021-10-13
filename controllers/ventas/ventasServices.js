@@ -44,7 +44,7 @@ class ventasServices {
 		this.ventas[index] = {
 			...producto,
 			...changes
-		}
+		};
 		return this.ventas[index];
 	}
 

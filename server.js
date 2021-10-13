@@ -4,7 +4,7 @@
 import Express from 'express';
 import Cors from 'cors';
 import dotenv from 'dotenv';
-import {conectarBD} from './BD/bd.js';
+import { conectarBD } from './BD/bd.js';
 import rutasProducto from './views/productos/rutas.js';
 //import rutasUsuario from './views/usuarios/rutas.js';
 // import { createRequire } from "module";
@@ -15,20 +15,20 @@ dotenv.config({ path: './.env' });
 
 const app = Express();
 
-app.use(Express.json ());
+app.use(Express.json());
 app.use(Cors());
-app.use('/productos',rutasProducto);
+app.use('/productos', rutasProducto);
 //app.use(rutasUsuario);
 
 const main = () => {
-        return app.listen(process.env.PORT, () => {
-        console.log(`Escuchando puerto ${process.env.PORT}`);
-    });
+	return app.listen(process.env.PORT, () => {
+		console.log(`Escuchando puerto ${process.env.PORT}`);
+	});
 };
 
 app.get('/', (req, res) => {
-    res.send('Hola Mundo');
-})
+	res.send('Hola Mundo');
+});
 
 conectarBD(main);
 routerApi(app);
