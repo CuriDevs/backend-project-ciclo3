@@ -1,4 +1,4 @@
-const faker = require('faker');
+import faker from 'faker';
 
 class ventasServices {
 	constructor() {
@@ -58,4 +58,4 @@ class ventasServices {
 	}
 }
 
-module.exports = ventasServices;
+export default ventasServices;

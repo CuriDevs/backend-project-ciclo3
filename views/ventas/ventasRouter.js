@@ -1,29 +1,28 @@
-const { Router, json } = require("express");
-const express = require("express");
-const ventasServices = require('../../controllers/ventas/ventasServices');
+import express from 'express';
+import ventasServices from '../../controllers/ventas/ventasServices.js';
 
-const router = express.Router();
+const ventasRouter = express.Router();
 const service = new ventasServices();
 
-router.get('/', async (req, res) => {
+ventasRouter.get('/', async (req, res) => {
 	const ventas = await service.find();
 	res.status(200).json(ventas);
 });
 
-router.get('/:id', async (req, res) => {
+ventasRouter.get('/:id', async (req, res) => {
 	const { id } = req.params;
 	const ventas = await service.findOne(id);
 	res.json(ventas);
 }
 );
 
-router.post('/', async (req, res) => {
+ventasRouter.post('/', async (req, res) => {
 	const body = req.body;
 	const newVentas = await service.create(body);
 	res.status(201).json(newVentas);
 });
 
-router.patch('/:id', async (req, res) => {
+ventasRouter.patch('/:id', async (req, res) => {
 	try {
 		const { id } = req.params;
 		const body = req.body;
@@ -36,7 +35,7 @@ router.patch('/:id', async (req, res) => {
 	}
 });
 
-router.delete('/:id', async (req, res) => {
+ventasRouter.delete('/:id', async (req, res) => {
 	try {
 		const { id } = req.params;
 		const rta = await service.delete(id);
@@ -48,4 +47,4 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default ventasRouter;
