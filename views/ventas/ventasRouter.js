@@ -39,9 +39,9 @@ ventasRouter.delete('/:id', async (req, res) => {
 	try {
 		const { id } = req.params;
 		const rta = await service.delete(id);
-		res.status(500).json(rta);
+		res.status(410).json(rta);
 	} catch (error) {
-		res.status(404),json({
+		res.status(404).json({
 			message: error.message
 	})
 	}
