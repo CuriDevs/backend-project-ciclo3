@@ -9,14 +9,14 @@ const getAllProducts = async(callback) => {
 
  const crearProducto = async(datosProductpo, callback) =>{
      if (
-         Object.keys(datosProducto).includes('name') &&
-         Object.keys(datosProducto).includes('value') &&
-         Object.keys(datosProducto).includes('description') &&
-         Object.keys(datosProducto).includes('status') 
+         Object.keys(datosProductpo).includes('name') &&
+         Object.keys(datosProductpo).includes('value') &&
+         Object.keys(datosProductpo).includes('description') &&
+         Object.keys(datosProductpo).includes('status') 
      ) {
          const conexionBd = getBD();
          //implementar el codigo paa crar el producto en la BD
-         await conexionBd.collection('producto').insertOne(datosProducto, callback);
+         await conexionBd.collection('producto').insertOne(datosProductpo, callback);
      }  else {
          return 'error';
      }
