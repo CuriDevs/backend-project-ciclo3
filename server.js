@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import {conectarBD} from './BD/bd.js';
 import rutasProducto from './views/productos/rutas.js';
 //import rutasUsuario from './views/usuarios/rutas.js';
-//import rutasVentas from './views/ventas/rutas.js';
+import ventasRouter from './views/ventas';
 
 dotenv.config({ path: './.env' });
 
@@ -17,12 +17,11 @@ app.use(Express.json ());
 app.use(Cors());
 app.use('/productos',rutasProducto);
 //app.use(rutasUsuario);
-//app.use(rutasVentas);
 
 const main = () => {
-        return app.listen(process.env.PORT, () => { 
+        return app.listen(process.env.PORT, () => {
         console.log(`Escuchando puerto ${process.env.PORT}`);
-    }); 
+    });
 };
 
 app.get('/', (req, res) => {
@@ -30,3 +29,4 @@ app.get('/', (req, res) => {
 })
 
 conectarBD(main);
+ventasRouter(app);
