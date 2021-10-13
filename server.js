@@ -15,7 +15,7 @@ const app = Express();
 
 app.use(Express.json ());
 app.use(Cors());
-app.use(rutasProducto);
+app.use('/productos',rutasProducto);
 //app.use(rutasUsuario);
 //app.use(rutasVentas);
 
@@ -24,5 +24,9 @@ const main = () => {
         console.log(`Escuchando puerto ${process.env.PORT}`);
     }); 
 };
+
+app.get('/', (req, res) => {
+    res.send('Hola Mundo');
+})
 
 conectarBD(main);

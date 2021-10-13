@@ -16,6 +16,11 @@ const generalCallback = (res) => {(err, result) => {
     }
 }};
 
+rutasProducto.route('/').get((req, res) => {
+    res.status(200).json({message: 'Hola'}); 
+    //getAllProducts(generalCallback(res));
+});
+
 rutasProducto.route('/productos').get((req, res) => {
     console.log('alguien consulta lista de productos'); 
     getAllProducts(generalCallback(res));
