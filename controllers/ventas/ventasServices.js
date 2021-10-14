@@ -2,6 +2,7 @@ import faker from 'faker';
 import boom from '@hapi/boom';
 import { ObjectId } from 'mongodb';
 import { getBD } from '../../BD/bd.js';
+import { ObjectID } from 'bson';
 
 class ventasServices {
 	constructor() {
@@ -27,40 +28,27 @@ class ventasServices {
 	}
 
 	async create(data) {
-
-		const conexionBd = getBD();
-		const datos = Object.values(data);
-		const consulta = this.findOne(datos.shift());
-
-		if(consulta){
-    	await conexionBd.collection('ventas').insertOne(data);
-		}
-		throw boom.notFound('Ya se encuentra la venta');
+		const connection = getBD(); 
+		const result = await connection.collection('ventas').insertOne(data);
+		return result;
 	}
 
 	async find() {
 		const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
         const resultado = await conexionBd.collection('ventas').find({}).toArray()
+
 		return resultado;
 	}
 
-	async findOne(id) {
-		const conexionBd = getBD();
-		//Obtenemos el id
-		const filtrar_id = {_id: ObjectId(id)};
+	async findOne(_id) {
+		const connection = getBD(); //conexion a la db
 
-		//Consultamos y almacenamos el dato
-		const resultado = await conexionBd.collection('ventas').findOne(filtrar_id);
-
-		const objeto = Object.values(resultado); //convertimos el dato en un array con sus valores
-		//const venta = this.ventas.find(item => item.id === id);
-		
-		if (objeto.findIndex(valor => valor.id === id)) { //verificamos si se encuentra repetido o no
-			return resultado;
-			//return ventas
+		if(typeof _id !== 'object'){ //comparamos si es diferente a un objeto
+			_id = ObjectID(_id); //convertimos y enviamos
+			return await connection.collection('ventas').findOne({_id});
 		}
-		throw boom.notFound( 'Venta no encontrada' );
+
 	}
 
 	async update(_id, changes) {
