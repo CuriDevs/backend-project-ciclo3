@@ -27,12 +27,16 @@ class ventasServices {
 
 	async create(data) {
 
+		const conexionBd = getBD();
+        await conexionBd.collection('ventas').insertOne(data);
+/*
 		const newProducto = {
 			id: faker.datatype.uuid(),
 			...data
 		};
 		this.ventas.push(newProducto);
-		return newProducto;
+		*/
+		return data;
 	}
 
 	async find() {
