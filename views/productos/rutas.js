@@ -4,29 +4,28 @@ import {
     getAllProducts,
     editarProducto,
     eliminarProducto,
-  } from '../../controllers/productos/controller-Products.js';
+} from '../../controllers/productos/controller-Products.js';
 
 const rutasProducto = Express.Router();
 
-const generalCallback = (res) => {(err, result) => {
+const generalCallback = (res) => (err, result) => {
     if (err) {
-        res.status(500).send('Error consultando productos'); 
+        console.log("error", err);
+        res.status(500).json({ error: err });
     } else {
         res.json(result);
     }
-}};
+};
 
-rutasProducto.route('/').get((req, res) => {
-    res.status(200).json({message: 'Hola'}); 
-    //getAllProducts(generalCallback(res));
-});
+
+
 
 rutasProducto.route('/productos').get((req, res) => {
-    console.log('alguien consulta lista de productos'); 
+    console.log('alguien hizo get en la ruta /productos');
     getAllProducts(generalCallback(res));
 });
 
-rutasProducto.route('/productos/nuevo').post((req,res) => {
+rutasProducto.route('/productos').post((req, res) => {
     crearProducto(req.body, generalCallback(res));
 });
 
@@ -35,7 +34,7 @@ rutasProducto.route('/productos/:id').patch((req, res) => {
 });
 
 rutasProducto.route('/productos/:id').delete((req, res) => {
-    eliminarProducto(req.params.id, req.body, generalCallback(res));
+    eliminarProducto(req.params.id, generalCallback(res));
 });
 
 

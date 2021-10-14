@@ -17,18 +17,21 @@ const app = Express();
 
 app.use(Express.json());
 app.use(Cors());
-app.use('/productos', rutasProducto);
+
+
+app.use(rutasProducto);
 //app.use(rutasUsuario);
 
 const main = () => {
 	return app.listen(process.env.PORT, () => {
-		console.log(`Escuchando puerto ${process.env.PORT}`);
+		console.log(`Escuchando puerto ${process.env.PORT}`); 
 	});
 };
 
 app.get('/', (req, res) => {
 	res.send('Hola Mundo');
 });
+
 
 conectarBD(main);
 routerApi(app);
