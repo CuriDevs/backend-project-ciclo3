@@ -10,14 +10,14 @@ const rutasProducto = Express.Router();
 
 const generalCallback = (res) => {(err, result) => {
     if (err) {
-        res.status(500).send('Error consultando productos'); 
+        res.status(500).send('Error consultando productos');
     } else {
         res.json(result);
     }
 }};
 
 rutasProducto.route('/productos').get((req, res) => {
-    console.log('alguien consulta lista de productos'); 
+    console.log('alguien consulta lista de productos');
     getAllProducts(generalCallback(res));
 });
 
@@ -33,5 +33,5 @@ rutasProducto.route('productos/:id').delete((req, res) => {
     eliminarProducto(req.params.id, generalCallback(res));
 });
 
-
+yar
 export default rutasProducto;

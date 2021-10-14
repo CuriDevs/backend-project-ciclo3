@@ -1,9 +1,9 @@
-import { getBD } from '../../BD/bd.js';
 import { ObjectId } from 'mongodb';
+import { getBD } from '../../BD/bd.js';
 
 const getAllProducts = async(callback) => {
     const conexionBd = getBD();
-    await conexionBd.collection('producto').find().limit().toArray(callback); 
+    await conexionBd.collection('producto').find().limit().toArray(callback);
     };
 
  const crearProducto = async(datosProducto, callback) => {
@@ -13,9 +13,9 @@ const getAllProducts = async(callback) => {
          Object.keys(datosProducto).includes('name') &&
          Object.keys(datosProducto).includes('value') &&
          Object.keys(datosProducto).includes('description') &&
-         Object.keys(datosProducto).includes('status') 
+         Object.keys(datosProducto).includes('status')
      ) {
-         
+
          await conexionBd.collection('producto').insertOne(datosProducto, callback);
      }  else {
          return {err: 'condiciones no encontradas', result:''};
@@ -24,17 +24,17 @@ const getAllProducts = async(callback) => {
 
 const editarProducto = async(edicion, id, callback) => {
     const filtrarProducto = {_id: new ObjectId(id)};
-    
+
     const operacion = {$set: edicion,};
     const conexionBd = getBD();
     await conexionBd.collection('producto').findOneAndUpdate(filtrarProducto, operacion,
         {upsert: true,returnOriginal: true}, callback);
 };
 
-const eliminarProducto = async(id, callback) => {
-    const filtrarProducto = {_id: new ObjectId(id)};
+const eliminarProducto = async (id, callback) => {
+    const filtrarProducto = { _id: new ObjectId(id) };
     const conexionBd = getBD();
-    await conexionBd.collection('producto').deleteOne(filtrarProducto, callback);
+    await conexionBd.collection('Producto').deleteOne(filtrarProducto, callback);
 };
 
-export {getAllProducts,crearProducto,editarProducto,eliminarProducto};
+export { getAllProducts, crearProducto, editarProducto, eliminarProducto };
