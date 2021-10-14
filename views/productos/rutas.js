@@ -33,5 +33,5 @@ rutasProducto.route('productos/:id').delete((req, res) => {
     eliminarProducto(req.params.id, generalCallback(res));
 });
 
-yar
+
 export default rutasProducto;
