@@ -25,8 +25,6 @@ const main = () => {
     }); 
 };
 
-app.get('/', (req, res) => {
-    res.send('Hola Mundo');
-})
+
 
 conectarBD(main);

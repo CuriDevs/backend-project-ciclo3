@@ -16,11 +16,6 @@ const generalCallback = (res) => {(err, result) => {
     }
 }};
 
-rutasProducto.route('/').get((req, res) => {
-    res.status(200).json({message: 'Hola'}); 
-    //getAllProducts(generalCallback(res));
-});
-
 rutasProducto.route('/productos').get((req, res) => {
     console.log('alguien consulta lista de productos'); 
     getAllProducts(generalCallback(res));
@@ -30,12 +25,12 @@ rutasProducto.route('/productos/nuevo').post((req,res) => {
     crearProducto(req.body, generalCallback(res));
 });
 
-rutasProducto.route('/productos/:id').patch((req, res) => {
+rutasProducto.route('productos/:id').patch((req, res) => {
     editarProducto(req.params.id, req.body, generalCallback(res));
 });
 
-rutasProducto.route('/productos/:id').delete((req, res) => {
-    eliminarProducto(req.params.id, req.body, generalCallback(res));
+rutasProducto.route('productos/:id').delete((req, res) => {
+    eliminarProducto(req.params.id, generalCallback(res));
 });
 
 
