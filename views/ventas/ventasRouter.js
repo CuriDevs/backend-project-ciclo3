@@ -47,8 +47,6 @@ ventasRouter.delete('/:id', async (req, res) => {
 	}
 });
 
-<<<<<<< HEAD
-=======
 ventasRouter.patch('/:_id',
 	validatorHandler(getCategoriasSchema, 'params'),
 	validatorHandler(updateCategoriasSchema, 'body'),
@@ -75,5 +73,4 @@ ventasRouter.delete('/:id',
 		}
 	});
 
->>>>>>> 433179d361c74e94e8547fca17c27dd39589526b
 export default ventasRouter;
