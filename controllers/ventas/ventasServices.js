@@ -29,15 +29,13 @@ class ventasServices {
 	async create(data) {
 
 		const conexionBd = getBD();
-        await conexionBd.collection('ventas').insertOne(data);
-/*
-		const newProducto = {
-			id: faker.datatype.uuid(),
-			...data
-		};
-		this.ventas.push(newProducto);
-		*/
-		return data;
+		const datos = Object.values(data);
+		const consulta = this.findOne(datos.shift());
+
+		if(consulta){
+    	await conexionBd.collection('ventas').insertOne(data);
+		}
+		throw boom.notFound('Ya se encuentra la venta');
 	}
 
 	async find() {
@@ -48,11 +46,21 @@ class ventasServices {
 	}
 
 	async findOne(id) {
-		const venta = this.ventas.find(item => item.id === id);
-		if (!venta) {
-			throw boom.notFound( 'Venta no encontrada' );
+		const conexionBd = getBD();
+		//Obtenemos el id
+		const filtrar_id = {_id: ObjectId(id)};
+
+		//Consultamos y almacenamos el dato
+		const resultado = await conexionBd.collection('ventas').findOne(filtrar_id);
+
+		const objeto = Object.values(resultado); //convertimos el dato en un array con sus valores
+		//const venta = this.ventas.find(item => item.id === id);
+		
+		if (objeto.findIndex(valor => valor.id === id)) { //verificamos si se encuentra repetido o no
+			return resultado;
+			//return ventas
 		}
-		return venta;
+		throw boom.notFound( 'Venta no encontrada' );
 	}
 
 	async update(id, changes) {
