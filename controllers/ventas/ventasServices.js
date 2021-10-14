@@ -51,25 +51,30 @@ class ventasServices {
 
 	}
 
-	async update(_id, changes) {
-		const filtrarProducto = { _id: ObjectId(_id) };
-		if (!filtrarProducto) {
-			throw boom.notFound( 'Venta no encontrada' );
+	async update(id, changes) {
+		const conexionBd = getBD();
+		const filtrarProducto = { _id: ObjectId(id) };
+		const venta = await conexionBd.collection('ventas').find(filtrarProducto).toArray();
+		if (venta.length === 0) {
+			throw boom.notFound('Venta no encontrada');
+		} else {
+			const operacion = { $set: changes, };
+			const updated = await conexionBd.collection('ventas').updateOne(filtrarProducto, operacion, { upsert: false, returnOriginal: true });
+			const resultado = await conexionBd.collection('ventas').find(filtrarProducto).toArray();
+			return resultado;
 		}
-		const operacion = { $set: changes, };
-    	const conexionBd = getBD();
-    	const resultado = await conexionBd.collection('ventas').updateOne(filtrarProducto, operacion,
-        { upsert: false, returnOriginal: true });
-		return resultado;
-}
+	}
 
 	async delete(id) {
-		const index = this.ventas.findIndex(item => item.id === id);
-		if (index === -1) {
-			throw boom.notFound( 'Venta no encontrada' );
+		const conexionBd = getBD();
+		const filtrarProducto = { _id: ObjectId(id) };
+		const venta = await conexionBd.collection('ventas').find(filtrarProducto).toArray();
+		if (venta.length === 0) {
+			throw boom.notFound('Venta no encontrada');
+		} else {
+			const remove = await conexionBd.collection('ventas').deleteOne(filtrarProducto);
+			return { id };
 		}
-		this.ventas.splice(index, 1);
-		return { id };
 	}
 }
 
