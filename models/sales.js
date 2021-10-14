@@ -1,5 +1,5 @@
-var mongoose = require('moongose'); //importamos la librera
-var schema = mongoose.Schema; 
+var mongoose = require('mongoose'); //importamos la librera
+var schema = mongoose.Schema;
 
 //creamos una variable donde guardaremos esquema con el contenido que se va a usar
 var newSale = new schema({
