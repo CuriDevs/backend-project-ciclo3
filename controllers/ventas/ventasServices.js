@@ -12,10 +12,15 @@ class ventasServices {
 		const limit = 3;
 		for (let index = 0; index < limit; index++) {
 			this.ventas.push({
-				id: faker.datatype.uuid(),
-				name: faker.commerce.productName(),
+				_id: faker.datatype.uuid(),
+				idProduct: faker.datatype.uuid(),
+				vTotal: parseInt(faker.commerce.price(), 10),
+				amount: parseInt(faker.commerce.price(), 10),
 				price: parseInt(faker.commerce.price(), 10),
-				image: faker.image.imageUrl(),
+				dateV: faker.date.recent(),
+				idClient: faker.datatype.uuid(),
+				nameC: faker.name.findName(),
+				nameV: faker.name.findName(),
 			});
 		}
 	}
