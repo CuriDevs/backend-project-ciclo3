@@ -1,5 +1,6 @@
 import faker from 'faker';
 import boom from '@hapi/boom';
+import { ObjectId } from 'mongodb';
 import { getBD } from '../../BD/bd.js';
 
 class ventasServices {
@@ -40,7 +41,10 @@ class ventasServices {
 	}
 
 	async find() {
-		return this.ventas;
+		const conexionBd = getBD();
+        //implementar el codigo paa crar el producto en la BD
+        const resultado = await conexionBd.collection('ventas').find({}).toArray()
+		return resultado;
 	}
 
 	async findOne(id) {
@@ -51,18 +55,17 @@ class ventasServices {
 		return venta;
 	}
 
-	async update(id, changes) {
-		const index = this.ventas.findIndex(item => item.id === id);
-		if (index === -1) {
+	async update(_id, changes) {
+		const filtrarProducto = { _id: ObjectId(_id) };
+		if (!filtrarProducto) {
 			throw boom.notFound( 'Venta no encontrada' );
 		}
-		const producto = this.ventas[index];
-		this.ventas[index] = {
-			...producto,
-			...changes
-		};
-		return this.ventas[index];
-	}
+		const operacion = { $set: changes, };
+    	const conexionBd = getBD();
+    	const resultado = await conexionBd.collection('ventas').updateOne(filtrarProducto, operacion,
+        { upsert: false, returnOriginal: true });
+		return resultado;
+}
 
 	async delete(id) {
 		const index = this.ventas.findIndex(item => item.id === id);

@@ -47,4 +47,33 @@ ventasRouter.delete('/:id', async (req, res) => {
 	}
 });
 
+<<<<<<< HEAD
+=======
+ventasRouter.patch('/:_id',
+	validatorHandler(getCategoriasSchema, 'params'),
+	validatorHandler(updateCategoriasSchema, 'body'),
+	async (req, res, next) => {
+		try {
+			const { id } = req.params;
+			const body = req.body;
+			const ventas = await service.update(id, body);
+			res.json(ventas);
+		} catch (error) {
+			next(error);
+		}
+	});
+
+ventasRouter.delete('/:id',
+	validatorHandler(getCategoriasSchema, 'params'),
+	async (req, res, next) => {
+		try {
+			const { id } = req.params;
+			const rta = await service.delete(id);
+			res.status(410).json(rta);
+		} catch (error) {
+			next(error);
+		}
+	});
+
+>>>>>>> 433179d361c74e94e8547fca17c27dd39589526b
 export default ventasRouter;
