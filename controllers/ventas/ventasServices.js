@@ -55,8 +55,8 @@ class ventasServices {
 		return venta;
 	}
 
-	async update(_id, changes) {
-		const filtrarProducto = { _id: ObjectId(_id) };
+	async update(id, changes) {
+		const filtrarProducto = { _id: ObjectId(id) };
 		if (!filtrarProducto) {
 			throw boom.notFound( 'Venta no encontrada' );
 		}

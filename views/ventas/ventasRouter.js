@@ -24,7 +24,7 @@ ventasRouter.post('/', async (req, res) => {
 	res.status(201).json(newVentas);
 });
 
-ventasRouter.patch('/:_id',
+ventasRouter.patch('/:id',
 	validatorHandler(getVentasSchema, 'params'),
 	validatorHandler(updateVentasSchema, 'body'),
 	async (req, res, next) => {

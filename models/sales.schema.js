@@ -1,10 +1,10 @@
 import joi from 'joi';
 
-const _id = joi.string().hex();
+const id = joi.string().hex();
 const idProduct = joi.string().uuid();
 const vTotal = joi.number().min(3).max(5000);
 const amount = joi.number().min(3).max(100);
-const price = joi.number().min(3).max(500);
+const price = joi.number().min(3).max(5000);
 const dateV = joi.date();
 const idClient = joi.string().uuid();
 const nameC = joi.string().min(3).max(15);
@@ -33,7 +33,7 @@ export const updateVentasSchema = joi.object({
 });
 
 export const getVentasSchema = joi.object({
-	_id: _id.required()
+	id: id.required()
 });
 
 export default { createVentasSchema, updateVentasSchema, getVentasSchema };
