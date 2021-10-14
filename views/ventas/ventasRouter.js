@@ -31,7 +31,7 @@ ventasRouter.post('/', async (req, res, next) => {
 	}
 });
 
-ventasRouter.patch('/:id',
+ventasRouter.patch('/:_id',
 	validatorHandler(getCategoriasSchema, 'params'),
 	validatorHandler(updateCategoriasSchema, 'body'),
 	async (req, res, next) => {
