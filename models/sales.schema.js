@@ -10,7 +10,7 @@ const idClient = joi.string().uuid();
 const nameC = joi.string().min(3).max(15);
 const nameV = joi.string().min(3).max(15);
 
-export const createCategoriasSchema = joi.object({
+export const createVentasSchema = joi.object({
 	idProduct: idProduct.required(),
 	vTotal: vTotal.required(),
 	amount: amount.required(),
@@ -21,7 +21,7 @@ export const createCategoriasSchema = joi.object({
 	nameV: nameV.required()
 });
 
-export const updateCategoriasSchema = joi.object({
+export const updateVentasSchema = joi.object({
 	idProduct: idProduct,
 	vTotal: vTotal,
 	amount: amount,
@@ -32,8 +32,8 @@ export const updateCategoriasSchema = joi.object({
 	nameV: nameV
 });
 
-export const getCategoriasSchema = joi.object({
+export const getVentasSchema = joi.object({
 	_id: _id.required()
 });
 
-export default { createCategoriasSchema, updateCategoriasSchema, getCategoriasSchema };
+export default { createVentasSchema, updateVentasSchema, getVentasSchema };
