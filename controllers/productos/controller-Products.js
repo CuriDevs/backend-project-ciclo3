@@ -6,7 +6,6 @@ const getAllProducts = async(callback) => {
     const conexionBd = getBD();
     await conexionBd.collection('Producto').find({}).limit().toArray(callback)  
     };
-
  const crearProducto = async(datosProductpo, callback) =>{
      if (
          Object.keys(datosProductpo).includes('name') &&

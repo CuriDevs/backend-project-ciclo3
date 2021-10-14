@@ -1,4 +1,5 @@
 import faker from 'faker';
+import { getBD } from '../../BD/bd.js';
 
 class ventasServices {
 	constructor() {
@@ -7,7 +8,7 @@ class ventasServices {
 	}
 
 	generate() {
-		const limit = 100;
+		const limit = 3;
 		for (let index = 0; index < limit; index++) {
 			this.ventas.push({
 				id: faker.datatype.uuid(),
@@ -19,6 +20,7 @@ class ventasServices {
 	}
 
 	async create(data) {
+
 		const newProducto = {
 			id: faker.datatype.uuid(),
 			...data
