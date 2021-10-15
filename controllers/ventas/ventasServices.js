@@ -29,15 +29,19 @@ class ventasServices {
 
 	async create(data) {
 		const connection = getBD();
-		const result = await connection.collection('ventas').insertOne(data);
-		return result;
+		//const _id = data["_id"];
+		//aun sigo miranddo alguna manera de validar
+		const insert = connection.collection("ventas").insertOne(data);
+		return insert;
 	}
 
 	async find() {
 		const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
-        const resultado = await conexionBd.collection('ventas').find({}).toArray()
-
+    const resultado = await conexionBd.collection('ventas').find({}).toArray()
+		if(resultado.length === 0){
+			throw boom.notFound('No se encuentran ventas');
+		}
 		return resultado;
 	}
 
