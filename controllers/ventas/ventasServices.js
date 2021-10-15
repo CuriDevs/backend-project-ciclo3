@@ -38,7 +38,7 @@ class ventasServices {
 	async find() {
 		const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
-    const resultado = await conexionBd.collection('ventas').find({}).toArray()
+    	const resultado = await conexionBd.collection('ventas').find({}).toArray()
 		if(resultado.length === 0){
 			throw boom.notFound('No se encuentran ventas');
 		}
