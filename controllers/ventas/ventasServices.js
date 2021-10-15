@@ -6,8 +6,8 @@ import { ObjectID } from 'bson';
 
 class ventasServices {
 	constructor() {
-		this.ventas = [];
-		this.generate();
+		//this.ventas = [];
+		//this.generate();
 	}
 
 	generate() {
@@ -28,7 +28,7 @@ class ventasServices {
 	}
 
 	async create(data) {
-		const connection = getBD(); 
+		const connection = getBD();
 		const result = await connection.collection('ventas').insertOne(data);
 		return result;
 	}
