@@ -7,6 +7,7 @@ const vTotal = joi.number().min(3).max(5000);
 const amount = joi.number().min(3).max(100);
 const price = joi.number().min(3).max(5000);
 const dateV = joi.date();
+const state = joi.string().min(3).max(11);
 const idClient = joi.string().uuid();
 const nameC = joi.string().min(3).max(15);
 const nameV = joi.string().min(3).max(15);
@@ -18,6 +19,7 @@ export const createVentasSchema = joi.object({
 	amount: amount.required(),
 	price: price.required(),
 	dateV: dateV.required(),
+	state: state.required(),
 	idClient: idClient.required(),
 	nameC: nameC.required(),
 	nameV: nameV.required()
@@ -30,6 +32,7 @@ export const updateVentasSchema = joi.object({
 	amount: amount,
 	price: price,
 	dateV: dateV,
+	state: state,
 	idClient: idClient,
 	nameC: nameC,
 	nameV: nameV
