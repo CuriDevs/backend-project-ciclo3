@@ -7,9 +7,13 @@ const ventasRouter = express.Router();
 const service = new ventasServices();
 
 ventasRouter.get('/',
-	async (req, res) => {
-		const doc = await service.find();
-		res.status(200).json(doc);
+	async (req, res, next) => {
+		try {
+			const doc = await service.find();
+			res.status(200).json(doc);
+		} catch (error) {
+			next(error);
+		}
 	});
 
 ventasRouter.get('/:id',

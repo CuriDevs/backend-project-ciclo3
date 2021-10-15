@@ -37,9 +37,9 @@ class ventasServices {
 
 	async find() {
 		const conexionBd = getBD();
-        //implementar el codigo paa crar el producto en la BD
-    	const resultado = await conexionBd.collection('ventas').find({}).toArray()
-		if(resultado.length === 0){
+		//implementar el codigo paa crar el producto en la BD
+		const resultado = await conexionBd.collection('ventas').find({}).toArray();
+		if (resultado.length === 0) {
 			throw boom.notFound('No se encuentran ventas');
 		}
 		return resultado;
@@ -48,9 +48,9 @@ class ventasServices {
 	async findOne(_id) {
 		const connection = getBD(); //conexion a la db
 
-		if(typeof _id !== 'object'){ //comparamos si es diferente a un objeto
+		if (typeof _id !== 'object') { //comparamos si es diferente a un objeto
 			_id = ObjectID(_id); //convertimos y enviamos
-			return await connection.collection('ventas').findOne({_id});
+			return await connection.collection('ventas').findOne({ _id });
 		}
 	}
 
