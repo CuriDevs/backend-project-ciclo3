@@ -29,7 +29,7 @@ ventasRouter.patch('/:id', async (req, res) => {
 		const ventas = await service.update(id, body);
 		res.json(ventas);
 	} catch (error) {
-		res.status(404), json({
+		res.status(404).json({
 			message: error.message
 		});
 	}
