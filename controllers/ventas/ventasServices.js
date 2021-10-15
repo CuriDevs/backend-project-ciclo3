@@ -48,16 +48,10 @@ class ventasServices {
 	async findOne(_id) {
 		const connection = getBD(); //conexion a la db
 
-		if(typeof _id !== 'string'){
-			_id = String(_id)
-			return await connection.collection('ventas').findOne({_id});
-		}
-		/*
 		if(typeof _id !== 'object'){ //comparamos si es diferente a un objeto
 			_id = ObjectID(_id); //convertimos y enviamos
 			return await connection.collection('ventas').findOne({_id});
 		}
-		*/
 	}
 
 	async update(id, changes) {
