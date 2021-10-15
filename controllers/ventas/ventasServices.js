@@ -6,8 +6,8 @@ import { ObjectID } from 'bson';
 
 class ventasServices {
 	constructor() {
-		this.ventas = [];
-		this.generate();
+		//this.ventas = [];
+		//this.generate();
 	}
 
 	generate() {
@@ -30,7 +30,7 @@ class ventasServices {
 	async create(data) {
 		const connection = getBD();
 		//const _id = data["_id"];
-		//aun sigo miranddo alguna manera de validar 
+		//aun sigo miranddo alguna manera de validar
 		const insert = connection.collection("ventas").insertOne(data);
 		return insert;
 	}
@@ -38,7 +38,7 @@ class ventasServices {
 	async find() {
 		const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
-    const resultado = await conexionBd.collection('ventas').find({}).toArray()
+    	const resultado = await conexionBd.collection('ventas').find({}).toArray()
 		if(resultado.length === 0){
 			throw boom.notFound('No se encuentran ventas');
 		}
