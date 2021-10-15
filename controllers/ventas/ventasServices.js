@@ -28,16 +28,27 @@ class ventasServices {
 	}
 
 	async create(data) {
-		const connection = getBD(); 
-		const result = await connection.collection('ventas').insertOne(data);
-		return result;
+		const connection = getBD();
+		//const _id = data["_id"];
+		const schema = new Object(data);
+	
+		if(schema.hasOwnProperty("_id")){
+			const id = ObjectId(schema["_id"]);
+
+			if(connection.collection('ventas').find(id)){
+				console.log("ya se encuentra un dato")
+			}
+			return connection.collection("ventas").insertOne(data);
+		}; 
 	}
 
 	async find() {
 		const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
-        const resultado = await conexionBd.collection('ventas').find({}).toArray()
-
+    const resultado = await conexionBd.collection('ventas').find({}).toArray()
+		if(resultado.length === 0){
+			throw boom.notFound('Venta no encontrada');
+		}
 		return resultado;
 	}
 

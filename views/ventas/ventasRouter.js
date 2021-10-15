@@ -6,14 +6,12 @@ import { createVentasSchema, updateVentasSchema, getVentasSchema } from '../../m
 const ventasRouter = express.Router();
 const service = new ventasServices();
 
-ventasRouter.get('/', 
-	async (req, res) => {
+ventasRouter.get('/',	async (req, res) => {
 		const doc = await service.find();
 		res.status(200).json(doc);
 });
 
-ventasRouter.get('/:id',
-	async (req, res, next) => {
+ventasRouter.get('/:id',async (req, res, next) => {
 		const { id } = req.params;
 		const ventas = await service.findOne(id);
 		res.status(200).json(ventas);
