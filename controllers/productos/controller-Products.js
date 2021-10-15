@@ -16,6 +16,7 @@ const crearProducto = async (datosProducto, callback) => {
     ) {
         const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
+        
         await conexionBd.collection('Producto').insertOne(datosProducto, callback);
     } else {
         return 'error';
