@@ -12,8 +12,8 @@ const Client = new MongoClient (stringconexion, {
 
 let conexionBd;
 
-const conectarBD = (callback) =>{  
-    
+const conectarBD = (callback) =>{
+
     Client.connect((err, db) => {
         if (err) {
             console.error('Error conectando a la base de datos');

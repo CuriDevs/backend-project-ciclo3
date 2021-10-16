@@ -20,6 +20,7 @@ const getAllProducts = async(callback) => {
      }  else {
          return {err: 'condiciones no encontradas', result:''};
      }
+
 };
 
 const editarProducto = async(edicion, id, callback) => {
@@ -37,4 +38,7 @@ const eliminarProducto = async (id, callback) => {
     await conexionBd.collection('Producto').deleteOne(filtrarProducto, callback);
 };
 
-export { getAllProducts, crearProducto, editarProducto, eliminarProducto };
+
+
+
+export { getAllProducts, editarProducto, crearProducto, eliminarProducto};

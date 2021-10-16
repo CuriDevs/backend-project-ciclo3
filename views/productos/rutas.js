@@ -22,10 +22,27 @@ rutasProducto.route('/productos').get((req, res) => {
 });
 
 rutasProducto.route('/productos/nuevo').post((req,res) => {
+rutasProducto.route('/productos').post((req, res) => {
+    /*Este condicional sirve para crear correctamente el estado */
+    if(req.body.status === "true"){
+        req.body.status = true
+    }else if(req.body.status === "false"){
+        req.body.status = false
+    }
+    console.log(typeof(req.body.status))
     crearProducto(req.body, generalCallback(res));
+
 });
 
 rutasProducto.route('productos/:id').patch((req, res) => {
+rutasProducto.route('/productos/:id').patch((req, res) => {
+    /*Este condicional sirve para modificar correctamente el estado */
+    if(req.body.status === "true"){
+        req.body.status = true
+    }else if(req.body.status === "false"){
+        req.body.status = false
+    }
+    console.log(typeof(req.body.status))
     editarProducto(req.params.id, req.body, generalCallback(res));
 });
 
@@ -33,5 +50,9 @@ rutasProducto.route('productos/:id').delete((req, res) => {
     eliminarProducto(req.params.id, generalCallback(res));
 });
 
+});
 
-export default rutasProducto;
+});
+
+
+export default {rutasProducto};
