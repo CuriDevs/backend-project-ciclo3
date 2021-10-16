@@ -12,7 +12,9 @@ const crearProducto = async (datosProducto, callback) => {
         Object.keys(datosProducto).includes('name') &&
         Object.keys(datosProducto).includes('value') &&
         Object.keys(datosProducto).includes('description') &&
-        Object.keys(datosProducto).includes('status')
+        Object.keys(datosProducto).includes('status')&&
+        Object.keys(datosProducto).includes('urlImg')&&
+        Object.keys(datosProducto).includes('nombreImg')
     ) {
         const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
@@ -25,7 +27,9 @@ const crearProducto = async (datosProducto, callback) => {
 
 const editarProducto = async ( id, edicion, callback) => {
     const filtrarProducto = { _id: new ObjectId(id) };
-    const operacion = { $set: edicion, };
+    const operacion = { 
+        $set: edicion, 
+    };
     const conexionBd = getBD();
     await conexionBd.collection('Producto').findOneAndUpdate(filtrarProducto, operacion,
         { upsert: true, returnOriginal: true }, callback);
