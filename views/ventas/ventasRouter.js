@@ -7,23 +7,37 @@ const ventasRouter = express.Router();
 const service = new ventasServices();
 
 ventasRouter.get('/',
-	async (req, res) => {
-		const doc = await service.find();
-		res.status(200).json(doc);
-});
+	async (req, res, next) => {
+		try {
+			const doc = await service.find();
+			res.status(200).json(doc);
+		} catch (error) {
+			next(error);
+		}
+	});
 
 ventasRouter.get('/:id',
+	validatorHandler(getVentasSchema, 'params'),
 	async (req, res, next) => {
-		const { id } = req.params;
-		const ventas = await service.findOne(id);
-		res.status(200).json(ventas);
-});
+		try {
+			const { id } = req.params;
+			const ventas = await service.findOne(id);
+			res.status(200).json(ventas);
+		} catch (error) {
+			next(error);
+		}
+	});
 
-ventasRouter.post('/',async (req, res) => {
-			const body = req.body;
-			const newVentas = await service.create(body);
-
+ventasRouter.post('/',
+	validatorHandler(createVentasSchema, 'body'),
+	async (req, res, next) => {
+		try {
+			const data = req.body;
+			const newVentas = await service.create(data);
 			res.status(201).json(newVentas);
+		} catch (error) {
+			next(error);
+		}
 });
 
 ventasRouter.patch('/:id',
