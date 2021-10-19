@@ -28,11 +28,14 @@ class ventasServices {
 	}
 
 	async create(data) {
-		const connection = getBD();
-		//const _id = data["_id"];
-		//aun sigo miranddo alguna manera de validar
-		const insert = connection.collection("ventas").insertOne(data);
-		return insert;
+		const connection = getBD();/* 
+		const id = {id: data.idSales};
+		//Validacion de regitro en proceso...
+		const res = await connection.collection('ventas').findOne(id);
+		if(res !== null){
+			console.log('el id ya se encuentra registrado');
+		} */
+		await connection.collection("ventas").insertOne(data);
 	}
 
 	async find() {
@@ -48,10 +51,13 @@ class ventasServices {
 	async findOne(_id) {
 		const connection = getBD(); //conexion a la db
 
-		if (typeof _id !== 'object') { //comparamos si es diferente a un objeto
-			_id = ObjectID(_id); //convertimos y enviamos
-			return await connection.collection('ventas').findOne({ _id });
+		const id = {idSales: _id}
+		const res = await connection.collection('ventas').findOne(id);
+		if(res === null){
+			return null; //404
+			//throw boom.notFound('Venta no encontrada');
 		}
+		return res;
 	}
 
 	async update(id, changes) {
