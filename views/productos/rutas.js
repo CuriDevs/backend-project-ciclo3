@@ -4,24 +4,25 @@ import {
     getAllProducts,
     editarProducto,
     eliminarProducto,
-  } from '../../controllers/productos/controller-Products.js';
+} from '../../controllers/productos/controller-Products.js';
 
 const rutasProducto = Express.Router();
 
-const generalCallback = (res) => {(err, result) => {
+const generalCallback = (res) => (err, result) => {
     if (err) {
-        res.status(500).send('Error consultando productos');
+        console.log("error", err);
+        res.status(500).json({ error: err });
     } else {
         res.json(result);
     }
-}};
+};
+
 
 rutasProducto.route('/productos').get((req, res) => {
-    console.log('alguien consulta lista de productos');
+    console.log('alguien hizo get en la ruta /productos');
     getAllProducts(generalCallback(res));
 });
 
-rutasProducto.route('/productos/nuevo').post((req,res) => {
 rutasProducto.route('/productos').post((req, res) => {
     /*Este condicional sirve para crear correctamente el estado */
     if(req.body.status === "true"){
@@ -31,10 +32,9 @@ rutasProducto.route('/productos').post((req, res) => {
     }
     console.log(typeof(req.body.status))
     crearProducto(req.body, generalCallback(res));
-
+    
 });
 
-rutasProducto.route('productos/:id').patch((req, res) => {
 rutasProducto.route('/productos/:id').patch((req, res) => {
     /*Este condicional sirve para modificar correctamente el estado */
     if(req.body.status === "true"){
@@ -46,13 +46,9 @@ rutasProducto.route('/productos/:id').patch((req, res) => {
     editarProducto(req.params.id, req.body, generalCallback(res));
 });
 
-rutasProducto.route('productos/:id').delete((req, res) => {
+rutasProducto.route('/productos/:id').delete((req, res) => {
     eliminarProducto(req.params.id, generalCallback(res));
 });
 
-});
 
-});
-
-
-export default {rutasProducto};
+export default rutasProducto;

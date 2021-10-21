@@ -1,10 +1,11 @@
 import { ObjectId } from 'mongodb';
 import { getBD } from '../../BD/bd.js';
 
-const getAllProducts = async(callback) => {
+
+const getAllProducts = async (callback) => {
     const conexionBd = getBD();
-    await conexionBd.collection('producto').find().limit().toArray(callback);
-    };
+    await conexionBd.collection('Producto').find({}).toArray(callback)
+};
 
 const crearProducto = async (datosProducto, callback) => {
     if (
@@ -17,7 +18,7 @@ const crearProducto = async (datosProducto, callback) => {
     ) {
         const conexionBd = getBD();
         //implementar el codigo paa crar el producto en la BD
-
+        
         await conexionBd.collection('Producto').insertOne(datosProducto, callback);
     } else {
         return 'error';
@@ -26,12 +27,13 @@ const crearProducto = async (datosProducto, callback) => {
 
 const editarProducto = async ( id, edicion, callback) => {
     const filtrarProducto = { _id: new ObjectId(id) };
-    const operacion = {
-        $set: edicion,
+    const operacion = { 
+        $set: edicion, 
     };
     const conexionBd = getBD();
-    await conexionBd.collection('producto').findOneAndUpdate(filtrarProducto, operacion,
-        {upsert: true,returnOriginal: true}, callback);
+    await conexionBd.collection('Producto').findOneAndUpdate(filtrarProducto, operacion,
+        { upsert: true, returnOriginal: true }, callback);
+
 };
 
 const eliminarProducto = async (id, callback) => {
@@ -40,5 +42,4 @@ const eliminarProducto = async (id, callback) => {
     await conexionBd.collection('Producto').deleteOne(filtrarProducto, callback);
 };
 
-
-export { getAllProducts, editarProducto, crearProducto, eliminarProducto};
+export { getAllProducts, crearProducto, editarProducto, eliminarProducto };

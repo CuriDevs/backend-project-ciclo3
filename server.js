@@ -16,7 +16,8 @@ const app = Express();
 
 app.use(Express.json());
 app.use(Cors());
-//app.use(rutasProducto);
+
+app.use(rutasProducto);
 //app.use(rutasUsuario);
 
 const main = () => {
