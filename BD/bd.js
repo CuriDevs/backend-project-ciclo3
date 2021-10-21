@@ -19,7 +19,7 @@ const conectarBD = (callback) =>{
             console.error('Error conectando a la base de datos');
             return 'error';
         }
-        conexionBd = db.db('Cellphone');
+        conexionBd = db.db('cellphone');
         console.log('Conexion Exitosa');
         return callback();
     });

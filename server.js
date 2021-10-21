@@ -16,8 +16,8 @@ const app = Express();
 
 app.use(Express.json());
 app.use(Cors());
-app.use(rutasProducto);
-app.use(rutasUsuario);
+//app.use(rutasProducto);
+//app.use(rutasUsuario);
 
 const main = () => {
 	return app.listen(process.env.PORT, () => {
