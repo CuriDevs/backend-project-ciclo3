@@ -10,6 +10,9 @@
 	"scripts": {
 		"start": "nodemon server.js"
 	},
+	"engines": {
+		"node": "14.x"
+	},
 	"dependencies": {
 		"@hapi/boom": "^9.1.4",
 		"axios": "^0.22.0",
