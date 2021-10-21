@@ -48,10 +48,10 @@ class ventasServices {
 		return resultado;
 	}
 
-	async findOne(_id) {
+	async findOne(_idVenta) {
 		const connection = getBD(); //conexion a la db
 
-		const id = {idSales: _id}
+		const id = {_id: ObjectId(_idVenta)};
 		const res = await connection.collection('ventas').findOne(id);
 		if(res === null){
 			return null; //404
