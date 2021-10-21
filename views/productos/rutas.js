@@ -18,8 +18,6 @@ const generalCallback = (res) => (err, result) => {
 };
 
 
-
-
 rutasProducto.route('/productos').get((req, res) => {
     console.log('alguien hizo get en la ruta /productos');
     getAllProducts(generalCallback(res));

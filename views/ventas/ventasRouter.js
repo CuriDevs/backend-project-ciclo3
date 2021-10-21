@@ -1,7 +1,7 @@
 import express from 'express';
 import ventasServices from '../../controllers/ventas/ventasServices.js';
 import validatorHandler from '../../middlewares/validator.handler.js';
-import { createVentasSchema, updateVentasSchema, getVentasSchema } from '../../models/sales.schema.js';
+import {createVentasSchema, updateVentasSchema, getVentasSchema } from '../../models/sales.schema.js';
 
 const ventasRouter = express.Router();
 const service = new ventasServices();

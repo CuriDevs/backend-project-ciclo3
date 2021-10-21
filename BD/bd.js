@@ -1,4 +1,4 @@
-import {Db, MongoClient} from 'mongodb';
+import {MongoClient} from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './.env' });
@@ -12,8 +12,8 @@ const Client = new MongoClient (stringconexion, {
 
 let conexionBd;
 
-const conectarBD = (callback) =>{  
-    
+const conectarBD = (callback) =>{
+
     Client.connect((err, db) => {
         if (err) {
             console.error('Error conectando a la base de datos');
