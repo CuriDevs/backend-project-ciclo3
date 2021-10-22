@@ -28,14 +28,26 @@ class ventasServices {
 	}
 
 	async create(data) {
-		const connection = getBD();/* 
+		const connection = getBD();
+		const object = {
+			idProduct: ObjectId(data.idProduct),
+			vTotal: data.vTotal,
+			amount: data.amount,
+			price: data.price,
+			dateV: data.dateV,
+			state: data.state,
+			idClient: data.idClient,
+			nameC: data.nameC,
+			nameV: data.nameV,
+		}
+		/* 
 		const id = {id: data.idSales};
 		//Validacion de regitro en proceso...
 		const res = await connection.collection('ventas').findOne(id);
 		if(res !== null){
 			console.log('el id ya se encuentra registrado');
 		} */
-		await connection.collection("ventas").insertOne(data);
+		await connection.collection("ventas").insertOne(object);
 	}
 
 	async find() {

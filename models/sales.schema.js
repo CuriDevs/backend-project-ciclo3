@@ -1,7 +1,6 @@
 import joi from 'joi';
 
 const id = joi.string().hex();
-const idSales = joi.string().alphanum().min(4).max(15);
 const idProduct = joi.string().hex();
 const vTotal = joi.number().min(999).max(99999999);
 const amount = joi.number().min(1);
@@ -13,7 +12,6 @@ const nameC = joi.string().min(3).max(50);
 const nameV = joi.string().min(3).max(50);
 
 export const createVentasSchema = joi.object({
-	idSales: idSales.required(),
 	idProduct: idProduct.required(),
 	vTotal: vTotal.required(),
 	amount: amount.required(),
@@ -26,7 +24,6 @@ export const createVentasSchema = joi.object({
 });
 
 export const updateVentasSchema = joi.object({
-	idSales: idSales,
 	idProduct: idProduct,
 	vTotal: vTotal,
 	amount: amount,
