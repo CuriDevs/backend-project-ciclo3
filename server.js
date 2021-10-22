@@ -6,9 +6,8 @@ import Cors from 'cors';
 import dotenv from 'dotenv';
 import { conectarBD } from './BD/bd.js';
 import rutasProducto from './views/productos/rutas.js';
-import rutasUsuario from './views/usuarios/rutas.js';
 import { logErrors, errorHandler, boomErrorHandler } from './middlewares/error.handler.js';
-import routerApi from './views/ventas/routerApi.js';
+import routerApi from './views/routerApi.js';
 
 dotenv.config({ path: './.env' });
 
@@ -18,7 +17,6 @@ app.use(Express.json());
 app.use(Cors());
 
 app.use(rutasProducto);
-//app.use(rutasUsuario);
 
 const main = () => {
 	return app.listen(process.env.PORT, () => {
