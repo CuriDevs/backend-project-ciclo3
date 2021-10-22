@@ -2,7 +2,6 @@ import faker from 'faker';
 import boom from '@hapi/boom';
 import { ObjectId } from 'mongodb';
 import { getBD } from '../../BD/bd.js';
-import { ObjectID } from 'bson';
 
 class ventasServices {
 	constructor() {
@@ -40,7 +39,7 @@ class ventasServices {
 			nameC: data.nameC,
 			nameV: data.nameV,
 		}
-		/* 
+		/*
 		const id = {id: data.idSales};
 		//Validacion de regitro en proceso...
 		const res = await connection.collection('ventas').findOne(id);
