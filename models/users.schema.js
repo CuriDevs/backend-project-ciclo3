@@ -1,7 +1,7 @@
 import joi from 'joi';
 
 const id = joi.string().hex();
-const UserName = joi.string().min(1).max(30);
+const UserName = joi.string().min(1).max(100);
 const Email = joi.string().email();
 const UrlImage = joi.string().uri();
 const Rol = joi.string().min(5).max(15);
