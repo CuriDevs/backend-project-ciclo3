@@ -13,6 +13,7 @@ class usersServices {
 			UrlImage: data.UrlImage,
 			Rol: data.Rol,
 			State: data.State,
+			Document: data.Document,
 			date: data.date,
 		};
 		await connection.collection("Usuarios").insertOne(object);
