@@ -35,7 +35,7 @@ class ventasServices {
 			price: data.price,
 			dateV: data.dateV,
 			state: data.state,
-			idClient: data.idClient,
+			idClient: ObjectId(data.idClient),
 			nameC: data.nameC,
 			nameV: data.nameV,
 		}
