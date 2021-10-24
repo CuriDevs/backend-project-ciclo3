@@ -6,7 +6,7 @@ const Email = joi.string().email();
 const UrlImage = joi.string().uri();
 const Rol = joi.string().min(5).max(15);
 const State = joi.string().min(3).max(15);
-const Document = joi.number().min(1).max(20);
+const Document = joi.number().min(1).max(99999999999);
 const date = joi.date();
 
 export const createUsersSchema = joi.object({
