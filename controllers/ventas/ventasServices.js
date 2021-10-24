@@ -9,22 +9,22 @@ class ventasServices {
 		//this.generate();
 	}
 
-	generate() {
-		const limit = 3;
-		for (let index = 0; index < limit; index++) {
-			this.ventas.push({
-				_id: faker.datatype.uuid(),
-				idProduct: faker.datatype.uuid(),
-				vTotal: parseInt(faker.commerce.price(), 10),
-				amount: parseInt(faker.commerce.price(), 10),
-				price: parseInt(faker.commerce.price(), 10),
-				dateV: faker.date.recent(),
-				idClient: faker.datatype.uuid(),
-				nameC: faker.name.findName(),
-				nameV: faker.name.findName(),
-			});
-		}
-	}
+	// generate() {
+	// 	const limit = 3;
+	// 	for (let index = 0; index < limit; index++) {
+	// 		this.ventas.push({
+	// 			_id: faker.datatype.uuid(),
+	// 			idProduct: faker.datatype.uuid(),
+	// 			vTotal: parseInt(faker.commerce.price(), 10),
+	// 			amount: parseInt(faker.commerce.price(), 10),
+	// 			price: parseInt(faker.commerce.price(), 10),
+	// 			dateV: faker.date.recent(),
+	// 			idClient: faker.datatype.uuid(),
+	// 			nameC: faker.name.findName(),
+	// 			nameV: faker.name.findName(),
+	// 		});
+	// 	}
+	// }
 
 	async create(data) {
 		const connection = getBD();
@@ -65,8 +65,7 @@ class ventasServices {
 		const id = {_id: ObjectId(_idVenta)};
 		const res = await connection.collection('ventas').findOne(id);
 		if(res === null){
-			return null; //404
-			//throw boom.notFound('Venta no encontrada');
+			throw boom.notFound('Venta no encontrada');
 		}
 		return res;
 	}
