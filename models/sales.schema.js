@@ -7,9 +7,9 @@ const amount = joi.number().min(1);
 const price = joi.number().min(999).max(99999999);
 const dateV = joi.date().iso();
 const state = joi.string().min(3).max(11);
-const idClient = joi.string().hex();
+const idVendedor = joi.string().hex();
 const nameC = joi.string().min(3).max(50);
-const nameV = joi.string().min(3).max(50);
+const Documento = joi.number().min(1).max(9999999999);
 
 export const createVentasSchema = joi.object({
 	idProduct: idProduct.required(),
@@ -18,9 +18,9 @@ export const createVentasSchema = joi.object({
 	price: price.required(),
 	dateV: dateV.required(),
 	state: state.required(),
-	idClient: idClient.required(),
+	idVendedor: idVendedor.required(),
 	nameC: nameC.required(),
-	nameV: nameV.required()
+	Documento: Documento.required()
 });
 
 export const updateVentasSchema = joi.object({
@@ -30,9 +30,9 @@ export const updateVentasSchema = joi.object({
 	price: price,
 	dateV: dateV,
 	state: state,
-	idClient: idClient,
+	idVendedor: idVendedor,
 	nameC: nameC,
-	nameV: nameV
+	Documento: Documento
 });
 
 export const getVentasSchema = joi.object({

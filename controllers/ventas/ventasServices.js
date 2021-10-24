@@ -35,9 +35,9 @@ class ventasServices {
 			price: data.price,
 			dateV: data.dateV,
 			state: data.state,
-			idClient: ObjectId(data.idClient),
+			idVendedor: ObjectId(data.idVendedor),
 			nameC: data.nameC,
-			nameV: data.nameV,
+			Documento: data.Documento,
 		}
 		/*
 		const id = {id: data.idSales};
